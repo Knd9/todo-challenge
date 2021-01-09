@@ -1,0 +1,4 @@
+venv/*
+db.sqlite3
+toDoProject/__pychache__/*
+toDoApp/__pycache__/*
