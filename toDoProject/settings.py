@@ -37,6 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # third party apps
+    'rest_framework',
+    'django_filters',
+    # own apps
+    'toDoApp'
 ]
 
 MIDDLEWARE = [
@@ -99,6 +104,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+#config API: Dicccionary of configuration
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend'
+    ]
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
