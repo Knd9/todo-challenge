@@ -12,4 +12,4 @@ class ToDoSerializer(serializers.ModelSerializer):
             'description',
             'completed'
         ]
-        read_only_fields = ['id', 'creationDate', 'completed']
+        read_only_fields = ['completed']

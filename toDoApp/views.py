@@ -2,7 +2,6 @@ from django.shortcuts import render
 from rest_framework import status, viewsets, filters
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from django.utils import timezone
 from .models import ToDo
 from .serializers import ToDoSerializer
 
@@ -20,8 +19,6 @@ class ToDoViewSet(viewsets.ModelViewSet):
         toDo = self.get_object()
         serializer = ToDoSerializer(data=request.data)
         if serializer.is_valid():
-            toDo.set_title(serializer.data['title'])
-            toDo.set_description(serializer.data['description'])
             toDo.save()
             return Response(serializer.data, 
                             status=status.HTTP_201_CREATED)
