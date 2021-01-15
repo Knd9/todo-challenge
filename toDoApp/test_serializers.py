@@ -20,9 +20,9 @@ def api_factory():
         ('', '', False, 'title', ['This field may not be blank.']),
         (
             """
-        This message will be write 3 times.
-        This message will be write 3 times.
-        This message will be write 3 times.
+        This message will be written 3 times.
+        This message will be written 3 times.
+        This message will be written 3 times.
         """, '', False, 'title', ['Ensure this field has no more than 100 characters.']),
     ]
 )
