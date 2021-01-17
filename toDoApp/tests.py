@@ -44,9 +44,9 @@ def test_create_todo(title, description, status_code, api_client):
 
 
 class ToDoTests(APITestCase):
-        """
-        Ensure we can create a new todo object.
-        """
+    """
+    Ensure we can create a new todo object.
+    """
     def test_create_todo_OK(self):
         data = {
             'title': 'todo title', 
@@ -60,7 +60,7 @@ class ToDoTests(APITestCase):
         self.assertEqual(md.ToDo.objects.get().description, '')
 
     def test_create_todo_int_title(self):
-        rand_num = random(100, 1000)
+        rand_num = random.randint(100, 1000)
         data = {
             'title': rand_num, 
             'description': '',
@@ -69,18 +69,18 @@ class ToDoTests(APITestCase):
         print(response.data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(md.ToDo.objects.count(), 1)
-        self.assertEqual(md.ToDo.objects.get().title, rand_num)
+        self.assertEqual(md.ToDo.objects.get().title, str(rand_num))
         self.assertEqual(md.ToDo.objects.get().description, '')
 
     def test_create_todo_int_description(self):
-        rand_num = random(100, 1000)
+        rand_num = random.randint(100, 1000)
         data = {
             'title': 'hello', 
-            'description': 12,
+            'description': rand_num,
         }
         response = self.client.post('/todos/', data, format='json')
         print(response.data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(md.ToDo.objects.count(), 1)
         self.assertEqual(md.ToDo.objects.get().title, 'hello')
-        self.assertEqual(md.ToDo.objects.get().description, rand_num)
+        self.assertEqual(md.ToDo.objects.get().description, str(rand_num))
