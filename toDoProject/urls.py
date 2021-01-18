@@ -17,11 +17,10 @@ from django.contrib import admin
 from django.urls import path, include
 
 from toDoApp import views as toDo_views
-from rest_framework.routers import DefaultRouter
+from rest_framework.routers import DefaultRouter, SimpleRouter
 
 router = DefaultRouter()
 router.register('', toDo_views.ToDoViewSet)
-#router.register('<int:pk>/', toDo_views.ToDoViewSet)
 
 
 urlpatterns = [

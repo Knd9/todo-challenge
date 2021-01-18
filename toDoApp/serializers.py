@@ -16,9 +16,6 @@ class ToDoSerializer(serializers.ModelSerializer):
         ]
         read_only_fields = ['completed']
 
-    def create(self, validated_data):
-        return md.ToDo.objects.create(**validated_data)
-
 
 class ToDoFilter(filters.FilterSet):
 
@@ -38,20 +35,7 @@ class ToDoFilter(filters.FilterSet):
 class ToDoUpdater(serializers.ModelSerializer):
 
     class Meta:
-        ids = serializers.ListField(child=serializers.IntegerField(min_value=0))
         model = md.ToDo
         fields = [
-            'ids'
+            'id'
         ]
-
-    def validate_completed(self, value, pk):
-        if value:
-            raise serializers.ValidationError('this To Do with pk'+str(pk)+'is already done. Please rewrite the ids')
-        return 1
-
-
-    def partial_update(self, instance, validated_data):
-        if validate_compelted(self, instance.completed, instance.id):# and validate_action(self, validated_data['action']):
-            instance.completed = True
-            instance.save()
-        return instance
