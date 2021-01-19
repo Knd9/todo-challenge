@@ -8,4 +8,4 @@ class ToDo(models.Model):
     completed = models.BooleanField(null=False, default=False)
 
     def __str__(self):
-        return str(self.id)
+        return self.title

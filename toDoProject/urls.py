@@ -18,12 +18,13 @@ from django.urls import path, include
 
 from toDoApp import views as toDo_views
 from rest_framework.routers import DefaultRouter, SimpleRouter
+from django.conf import settings
+from django.conf.urls.static import static
 
 router = DefaultRouter()
 router.register('', toDo_views.ToDoViewSet)
 
-
 urlpatterns = [
-    #path('admin/', admin.site.urls),
-    path('todos/', include(router.urls))
+    path('todos/', include(router.urls)),
+    path('', include('swagger_ui.urls'))
 ]

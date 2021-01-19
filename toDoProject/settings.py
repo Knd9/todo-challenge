@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_filters',
     # own apps
-    'toDoApp'
+    'toDoApp',
+    'swagger_ui'
 ]
 
 MIDDLEWARE = [
@@ -137,3 +138,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+SWAGGER_YAML_FILE = 'ToDoList_API_swagger.yaml'

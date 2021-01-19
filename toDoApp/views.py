@@ -10,7 +10,7 @@ from toDoApp import serializers as srz
 
 class ToDoViewSet(viewsets.ModelViewSet):
     """
-    A ViewSet that provides 
+    Provides
     `get`, `filter`, `create`, `update` and `delete` ToDo actions.
     """
     queryset = md.ToDo.objects.all()
@@ -26,7 +26,7 @@ class ToDoViewSet(viewsets.ModelViewSet):
             return srz.ToDoUpdater
         else:
             return srz.ToDoSerializer
-    
+
     def get_object(self, pk):
         try:
             return md.ToDo.objects.get(pk=pk)
@@ -35,28 +35,37 @@ class ToDoViewSet(viewsets.ModelViewSet):
 
     def patch(self, request, pk=None, format=None):
         """
-        Update toDo's to completed
+        Update ToDo list to completed
         """
-        ret = []
-        ids = request.data.get('id')
         instances = []
         try:
+            ids = request.data.get('id')
             for i in ids:
                 todo = self.get_object(i)
                 instances.append(todo)
+        except (TypeError, ValueError):
+            response = {
+                'id': 'Invalid format field. Write in [] with positive integers.'}
+            return Response(response, status=status.HTTP_400_BAD_REQUEST)
         except NotFound:
-            response = {'message': 'some id does not exist. Please rewrite the ids'}
+            response = {
+                'message': 'some to do ID does not exist. Please rewrite the id list.'}
             return Response(response, status=status.HTTP_404_NOT_FOUND)
         for i in instances:
-            i.completed=True
+            i.completed = True
             i.save()
         serializer = srz.ToDoSerializer(instances, many=True)
         return Response(serializer.data)
-
+    
     def destroy(self, request, pk, format=None):
-        try: 
+        """
+        Delete a ToDo
+        """
+        try:
             todo = self.get_object(pk)
             todo.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
-        except:
-            return Response(status=status.HTTP_404_NOT_FOUND)
+        except NotFound:
+            response = {'message': 'To do with ID ' +
+                        pk + ' does not exist. Perhaps it was deleted or it is a negative number'}
+            return Response(response, status=status.HTTP_404_NOT_FOUND)
