@@ -82,6 +82,9 @@ paths:
           name: creationDate__day
         - type: integer
           in: query
+          name: creationDate__hour
+        - type: integer
+          in: query
           name: creationDate__minute
         - type: string
           in: query
