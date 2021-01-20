@@ -10,7 +10,9 @@ from toDoApp import views as vw
 def api_factory():
     return APIRequestFactory()
 
-
+"""
+Create a ToDo tests
+"""
 @pytest.mark.django_db
 @pytest.mark.parametrize(
    'title, description, status_code', [
@@ -43,3 +45,7 @@ def test_create_todo_factory(title, description, status_code, api_factory):
     print(response)
     assert(response.status_code, status_code)
     assert(md.ToDo.objects.count(), 1)
+
+"""
+List ToDo's tests
+"""

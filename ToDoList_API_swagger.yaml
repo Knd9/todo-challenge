@@ -83,7 +83,7 @@ paths:
         - type: integer
           in: query
           name: creationDate__minute
-        - type: integer
+        - type: string
           in: query
           name: title
         - type: string

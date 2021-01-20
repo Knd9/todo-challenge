@@ -62,9 +62,10 @@ $ source venvToDo/bin/activate
 $ cd todo-challenge
 ```
 
-### Install resources in your virtual enviroment
+### Switch to develop and install resources in your virtual enviroment
 
 ```bash
+$ git checkout develop
 $ pip install -r requirements.txt
 ```
 
@@ -81,10 +82,9 @@ $ wget https://raw.githubusercontent.com/swagger-api/swagger-ui/master/dist/swag
 $ wget https://raw.githubusercontent.com/swagger-api/swagger-ui/master/dist/favicon-16x16.png -P ../venvToDo/lib/python3.6/site-packages/swagger_ui/static/swagger-ui/dist/
 ```
 
-### Switch to develop and migrate
+### Migrate
 
 ```bash
-$ git checkout develop
 $ python manage.py migrate
 ```
 

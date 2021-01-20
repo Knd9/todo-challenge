@@ -56,7 +56,7 @@ class ToDoViewSet(viewsets.ModelViewSet):
             i.save()
         serializer = srz.ToDoSerializer(instances, many=True)
         return Response(serializer.data)
-    
+
     def destroy(self, request, pk, format=None):
         """
         Delete a ToDo
@@ -66,6 +66,6 @@ class ToDoViewSet(viewsets.ModelViewSet):
             todo.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
         except NotFound:
-            response = {'message': 'To do with ID ' +
-                        pk + ' does not exist. Perhaps it was deleted or it is a negative number'}
+            response = {'message': 'To do with ID ' + pk + \
+                ' does not exist. Perhaps it was deleted or it is a negative number'}
             return Response(response, status=status.HTTP_404_NOT_FOUND)
