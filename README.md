@@ -62,10 +62,9 @@ $ source venvToDo/bin/activate
 $ cd todo-challenge
 ```
 
-### Switch to develop and install resources in your virtual enviroment
+### Install resources in your venv
 
 ```bash
-$ git checkout develop
 $ pip install -r requirements.txt
 ```
 
@@ -80,6 +79,12 @@ And you have to add the next `.css` and `.png` files
 ```bash
 $ wget https://raw.githubusercontent.com/swagger-api/swagger-ui/master/dist/swagger-ui.css -P ../venvToDo/lib/python3.6/site-packages/swagger_ui/static/swagger-ui/dist/
 $ wget https://raw.githubusercontent.com/swagger-api/swagger-ui/master/dist/favicon-16x16.png -P ../venvToDo/lib/python3.6/site-packages/swagger_ui/static/swagger-ui/dist/
+```
+
+And to desable warning of YAML, you have to modify a single line in a swagger_ui file of the venv
+
+```bash
+$ sed -i 's/read()/read(), Loader=yaml.FullLoader/1' ../venvToDo/lib/python3.6/site-packages/swagger_ui/views.py
 ```
 
 ### Migrate

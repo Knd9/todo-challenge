@@ -3,7 +3,7 @@ info:
   title: To Do List API
   version: '1.0'
 host: 'localhost:8000'
-basePath: /todos
+basePath: /todos/
 schemes:
   - http
 paths:
@@ -178,6 +178,12 @@ definitions:
         type: boolean
         default: false
         description: The ToDo complete status.
+    example:
+      - id: 1
+        creationDate: '2021-01-16T18:14:47.262389-03:00'
+        title: title todo
+        description: ''
+        completed: true
 
   ToDoList:
     type: array
