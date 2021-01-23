@@ -1,11 +1,15 @@
-from rest_framework import serializers
 from django.db import models
 from django_filters import rest_framework as filters
+
+from rest_framework import serializers
+
 from toDoApp import models as md
 
-class ToDoSerializer(serializers.ModelSerializer):
 
+class ToDoSerializer(serializers.ModelSerializer):
+    """Show an already created ToDo's object"""
     class Meta:
+
         model = md.ToDo
         fields = [
             'id',
@@ -18,11 +22,13 @@ class ToDoSerializer(serializers.ModelSerializer):
 
 
 class ToDoFilter(filters.FilterSet):
+    """Set filter fields on ToDoSerializer"""
 
     class Meta:
+
         model = md.ToDo
         fields = {
-            'creationDate': ['year', 'month', 'day', 'hour', 'minute'], 
+            'creationDate': ['year', 'month', 'day', 'hour', 'minute'],
             'title': ['exact', 'contains'],
             'description': ['exact', 'contains']
         }
@@ -33,8 +39,10 @@ class ToDoFilter(filters.FilterSet):
 
 
 class ToDoUpdater(serializers.ModelSerializer):
+    """Show bulk update payload"""
 
     class Meta:
+
         model = md.ToDo
         fields = [
             'id'

@@ -36,8 +36,8 @@ def test_create_todo_serializer_exception(
     serializer = srz.ToDoSerializer(
         data=data, context={
             'request': Request(request)})
-    assert(serializer.is_valid() is is_valid_value)
-    assert(serializer.errors[exception] == message)
+    assert serializer.is_valid() is is_valid_value
+    assert serializer.errors[exception] == message
 
 
 @pytest.mark.django_db
@@ -59,4 +59,4 @@ def test_create_todo_serializer_OK(
     serializer = srz.ToDoSerializer(
         data=data, context={
             'request': Request(request)})
-    assert(serializer.is_valid() is is_valid_value)
+    assert serializer.is_valid() is is_valid_value

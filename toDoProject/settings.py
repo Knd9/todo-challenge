@@ -28,6 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Logs
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': True,
@@ -67,7 +68,6 @@ LOGGING = {
         }
     }
 }
-
 
 # Application definition
 
@@ -123,7 +123,7 @@ WSGI_APPLICATION = 'toDoProject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 

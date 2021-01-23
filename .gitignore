@@ -1,5 +1,21 @@
 venv/*
+
 db.sqlite3
-toDoProject/__pychache__/*
+
 toDoApp/__pycache__/*
-logs/*
+toDoApp/migrations/__pycache__/*.pyc
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/

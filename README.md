@@ -81,10 +81,16 @@ $ wget https://raw.githubusercontent.com/swagger-api/swagger-ui/master/dist/swag
 $ wget https://raw.githubusercontent.com/swagger-api/swagger-ui/master/dist/favicon-16x16.png -P ../venvToDo/lib/python3.6/site-packages/swagger_ui/static/swagger-ui/dist/
 ```
 
-And to desable warning of YAML, you have to modify a single line in a swagger_ui file of the venv
+To desable warning of YAML, you have to modify a single line in the file `swagger_ui/views.py` of the venv
 
 ```bash
 $ sed -i 's/read()/read(), Loader=yaml.FullLoader/1' ../venvToDo/lib/python3.6/site-packages/swagger_ui/views.py
+```
+
+To desable Werkzeug warning, modify a single line in the file `flask_restplus/fields.py`
+
+```bash
+$ sed -i 's/from werkzeug import/from werkzeug.utils import/1' ../venvToDo/lib/python3.6/site-packages/flask_restplus/fields.py
 ```
 
 ### Migrate
@@ -99,6 +105,7 @@ $ python manage.py migrate
 $ python manage.py runserver
 ```
 Something like this will appear:
+
 (...)
 ```
 Django version 3.1.5, using settings 'toDoProject.settings'
@@ -106,7 +113,13 @@ Starting development server at http://127.0.0.1:8000/
 Quit the server with CONTROL-C.
 ```
 
-### Deactivate your 'venvToDo' virtual enviroment
+### Run tests
+
+```bash
+$ pytest --create-db
+```
+
+### To deactivate your 'venvToDo' venv
 
 ```bash
 $ deactivate

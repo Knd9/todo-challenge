@@ -1,7 +1,14 @@
 from django.db import models
 
-# Create your models here.
+
 class ToDo(models.Model):
+    """
+    Define ToDo object model that contains:
+    a content of ToDo (title, description),
+    the cration date with time (creationDate)
+    and done status (completed)
+    """
+
     creationDate = models.DateTimeField(auto_now_add=True, editable=False)
     title = models.CharField(max_length=100)
     description = models.TextField(blank=True)
