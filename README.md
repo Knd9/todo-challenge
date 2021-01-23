@@ -119,6 +119,12 @@ Quit the server with CONTROL-C.
 $ pytest --create-db
 ```
 
+### To deploy
+
+```bash
+$ python manage.py collectstatic
+```
+
 ### To deactivate your 'venvToDo' venv
 
 ```bash
