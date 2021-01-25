@@ -1,10 +1,11 @@
 import pytest
-from rest_framework.test import APIRequestFactory
-from rest_framework.request import Request
 from rest_framework import status
+from rest_framework.request import Request
+from rest_framework.test import APIRequestFactory
+
 from toDoApp import models as md
-from toDoApp import views as vw
 from toDoApp import serializers as srz
+from toDoApp import views as vw
 
 
 # unit tests
