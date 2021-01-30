@@ -1,0 +1,276 @@
+swagger: '2.0'
+info:
+  title: To Do List API
+  version: '1.0'
+host: 'localhost:8000'
+basePath: /todos/
+schemes:
+  - http
+paths:
+  /:
+    post:
+      summary: Create a To Do
+      description: >-
+        Register a To Do for a given `title` and `description`, return a `TODO`
+        type. Or Bad Request in case that the `title` is blank or has more than
+        100 characters or `title` or `description` have null value.
+      operationId: POST_todo
+      consumes:
+        - application/json
+        - text/html
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: ToDo
+          schema:
+            $ref: '#/definitions/ToDoRequired'
+      responses:
+        '201':
+          description: Created
+          schema:
+            $ref: '#/definitions/ToDoCreated'
+          examples:
+            id: 1
+            creationDate: '2021-01-15T18:14:47.262389-03:00'
+            title: title todo
+            description: ''
+            completed: false
+    get:
+      summary: List ToDo's
+      description: >-
+        Return a list with all To Do's registered or with To Do's filtered by
+        given query parameters. If there aren't params, return all ToDo's. If
+        nothing matches, return []
+      operationId: GET_todos
+      consumes:
+        - application/json
+        - text/html
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/ToDoList'
+          examples:
+            list:
+              - id: 1
+                creationDate: '2021-01-15T18:14:47.262389-03:00'
+                title: title todo
+                description: ''
+                completed: false
+              - id: 2
+                creationDate: '2021-01-15T18:16:46.262389-03:00'
+                title: pay
+                description: telephone
+                completed: true
+              - id: 4
+                creationDate: '2021-01-15T20:16:46.262389-03:00'
+                title: do excercise
+                description: functional legs
+                completed: false
+      parameters:
+        - type: integer
+          in: query
+          name: creationDate__year
+        - type: integer
+          in: query
+          name: creationDate__month
+        - type: integer
+          in: query
+          name: creationDate__day
+        - type: integer
+          in: query
+          name: creationDate__hour
+        - type: integer
+          in: query
+          name: creationDate__minute
+        - type: string
+          in: query
+          name: title
+        - type: string
+          in: query
+          name: title__contains
+        - type: string
+          in: query
+          name: description
+        - type: string
+          in: query
+          name: description__contains
+    patch:
+      summary: Update ToDo list as done
+      description: >-
+        Return a list of To Do's updated the value of `completed` to true based a given `id` list IDs. Or Not Found in case that some ID of the `id` list does not   exist. Or Bad Request if can''t parse `id`.
+      operationId: PATCH_todos
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: id
+          schema:
+            $ref: '#/definitions/ToDoIdRequired'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/ToDoPatchResponse'
+
+  '/{id}/':
+    delete:
+      summary: Destroy a ToDo
+      description: >-
+        Remove a ToDo based a given ID. Or Not Found in case that the ID given
+        does not exist.
+      operationId: DELETE_todo
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          type: integer
+          minimum: 1
+          required: true
+          description: Numeric ID of the ToDo to destroy
+      responses:
+        '204':
+          description: No Content
+        '404':
+          description: 'Not Found: ToDo with ID given does not exist'
+
+definitions:
+
+  ToDoRequired:
+    type: object
+    required:
+      - title
+    properties:
+      title:
+        type: string
+        minLength: 1
+        maxLength: 100
+        description: The ToDo title.
+      description:
+        type: string
+        description: The ToDo description.
+
+  ToDoCreated:
+    type: object
+    properties:
+      id:
+        type: integer
+        minimum: 1
+        exclusiveMinimum: false
+        description: The ToDo ID.
+      creationDate:
+        type: string
+        format: date-time
+        description: The ToDo datetime created.
+      title:
+        type: string
+        minLength: 1
+        maxLength: 100
+        description: The ToDo title.
+      description:
+        type: string
+        description: The ToDo description.
+      completed:
+        type: boolean
+        default: false
+        description: The ToDo complete status.
+    example:
+      - id: 1
+        creationDate: '2021-01-16T18:14:47.262389-03:00'
+        title: title todo
+        description: ''
+        completed: true
+
+  ToDoList:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: integer
+          minimum: 1
+          exclusiveMinimum: false
+          description: The ToDo ID.
+        creationDate:
+          type: string
+          format: date-time
+          description: The ToDo datetime created.
+        title:
+          type: string
+          minLength: 1
+          maxLength: 100
+          description: The ToDo title.
+        description:
+          type: string
+          description: The ToDo description.
+        completed:
+          type: boolean
+          default: false
+          description: The ToDo complete status.
+    example:
+      - id: 1
+        creationDate: '2021-01-16T18:14:47.262389-03:00'
+        title: title todo
+        description: ''
+        completed: true
+      - id: 2
+        creationDate: '2021-01-16T18:16:46.262389-03:00'
+        title: string
+        description: 'description'
+        completed: false
+
+  ToDoPatchResponse:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: integer
+          minimum: 1
+          exclusiveMinimum: false
+          description: The ToDo ID.
+        creationDate:
+          type: string
+          format: date-time
+          description: The ToDo datetime created.
+        title:
+          type: string
+          minLength: 1
+          maxLength: 100
+          description: The ToDo title.
+        description:
+          type: string
+          description: The ToDo description.
+        completed:
+          type: boolean
+          default: false
+          description: The ToDo complete status.
+    example:
+      - id: 1
+        creationDate: '2021-01-15T18:14:47.262389-03:00'
+        title: title todo
+        description: ''
+        completed: true
+      - id: 2
+        creationDate: '2021-01-15T18:16:46.262389-03:00'
+        title: pay
+        description: telephone
+        completed: true
+
+  ToDoIdRequired:
+    required:
+      - id
+    type: array
+    items:
+      type: integer
+      minimum: 1
+      exclusiveMinimum: false
+    minItems: 1
+    example:
+      id:
+      - 1
+      - 2

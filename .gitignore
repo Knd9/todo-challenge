@@ -1,0 +1,42 @@
+# Environments
+.env
+.venv
+venv/*
+
+# Django stuff:
+*.log
+db.sqlite3
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+toDoApp/__pycache__/
+toDoApp/__pycache__/
+toDoApp/migrations/__pycache__/*.pyc
+
+# Distribution / packaging
+dist/
+lib/
+lib64/
+
+# logs
+logs/*
+
+# static files
+static/*
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
