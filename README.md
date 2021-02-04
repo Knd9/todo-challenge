@@ -1,14 +1,8 @@
-# Invera ToDo-List Challenge (Python/Django Jr-SSr)
-
-El propósito de esta prueba es conocer tu capacidad para crear una pequeña aplicación funcional en un límite de tiempo. A continuación, encontrarás las funciones, los requisitos y los puntos clave que debés tener en cuenta durante el desarrollo.
-
-## Qué queremos que hagas:
+# Invera ToDo-List Challenge (Python/Django)
 
 - El Challenge consiste en crear una aplicación web sencilla que permita a los usuarios crear y mantener una lista de tareas.
-- La entrega del resultado será en un nuevo fork de este repo y deberás hacer una pequeña demo del funcionamiento y desarrollo del proyecto ante un super comité de las más grandes mentes maestras de Invera, o a un par de devs, lo que sea más fácil de conseguir.
-- Podes contactarnos en caso que tengas alguna consulta.
 
-## Objetivos:
+## Requisitos:
 
 El usuario de la aplicación tiene que ser capaz de:
 
